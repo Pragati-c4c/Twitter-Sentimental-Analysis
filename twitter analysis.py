@@ -1,0 +1,57 @@
+
+import textblob
+import sys,tweepy
+import matplotlib.pyplot as plt
+def percentage(part,whole):
+    return 100* float(part)/float(whole)
+def analysis():
+    consumerKey='s5ObZD5UiSyjohChK8dGL44vm'
+    consumer_secret ='AWcmmBNIDmuG8DJPztYMWvcRs61RsM6h5PubR1cwAbUxZLEt6X'
+
+    access_token ='818369802997796864-OHfvLB8YOAA4Uw5wte6pz2AOvFRmRid'
+    access_token_secret ='BHVvYFwjlm1gsxUvkjQIezabe1tpWFGBxldRAu1uEx1Cv'
+    auth = tweepy.OAuthHandler(consumer_key=consumerKey, consumer_secret=consumerSecret)
+    auth.set_access_token(accessToken,accessTokenSecret)
+    api = tweepy.API(auth)
+    searchTerm = input("Enter Keyword/hashtag to search about :")
+    noOfSearchTerms = int(input("Enter how many tweets to analyze:"))
+    tweets =tweepy.Cursor(api.search,q=searchTerm, lang="English").items(noOfSearchterms)
+    positive = 0
+    negative = 0
+    neutral=0
+    polarity=0
+    for tweet in tweets:
+        print(tweet.text)
+        analysis = TextBlob(tweet.text)
+        polarity +=analysis.sentiment.polarity
+        if(analysis.sentiment.polarity == 0):
+            neutral+=1
+        elif (analysis.sentiment.polarity < 0.00):
+            negative+= 1
+        elif (analysis.sentiment.polarity > 0.00):
+            positive+= 1
+    positive =percentage(positive,no0fSearchTerms)
+    negative = percentage(negative, no0fSearchTerms)
+    neutral = percentage(neutral, no0fSearchTerms)
+    polarity = percentage(polarity, no0fSearchTerms)
+    positive = format(positive,'.2f')
+    neutral =format(neutral,'.2f')
+    negative = format(negative, '.2f')
+    print("How many People are reacting on " +searchTerm+ "by analyzing"+ str(noOfSearchTerms)+ "Tweets.")
+    if(polarity ==0):
+          print("Neutral")
+    elif (polarity < 0.00):
+        print("Negative")
+    elif (polarity > 0.00):
+        print("Positive")
+    labels = ['Positive['+str(positive)+'%]','Neutral['+str(neutral)+'%]','Negative['+str(negative)+'%]']
+    sizes =[positive,neutral,negative]
+    colors =['yellowgreen','gold','red']
+    patches,texts =plt.pie(sizes,colors=colors,startangle=90)
+    plt.legend(patches,labels,loc="best")
+    plt.title('how people are reacting on'+ searchTerm +'by analyzing' +str(noOfSearchTerms)+'Tweets.')
+    plt.axis('equal')
+    plt.tight_layout()
+    plt.show()
+analysis()
+
