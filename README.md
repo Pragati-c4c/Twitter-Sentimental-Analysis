@@ -5,6 +5,7 @@ It will search tweets about any topic and analyze each tweet to see how people r
 ## Let's start
 First of all we need to create developer account in twitter.After that twitter will grant permission to access it.After that we create 
 app and generated consumer key,consumer secret ,access token key and access token secret need to be copied from there for further use in code.
-Installation & Dependencies
+
+## Installation & Dependencies
 If you have differnt version of python then install version 3 of it using below command:
-python3 setup.py install
+```python3 setup.py install```
