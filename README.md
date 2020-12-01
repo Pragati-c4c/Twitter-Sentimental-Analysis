@@ -12,10 +12,10 @@ If you have differnt version of python then install version 3 of it using below 
 ```python3 setup.py install```
 Now we can install dependencies in it.
 ## Built with
-**Python 3.6**
-**tweepy**
-**textblob**
-**matplotlib**
+|**Python 3.6**|
+|**tweepy**|
+|**textblob**|
+|**matplotlib**|
 
 ## Usage
 Once you create an app on twitter and installed all dependencies on python3 version.Then open python file & paste generated access keys & consumer keys.
